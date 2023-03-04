@@ -40,17 +40,28 @@ public void draw ()
 }
 public boolean isWon()
 {
-    //your code here
-    return false;
+    for(int i = 0; i < mines.size(); i++){
+      if(mines.get(i).isFlagged() == false){
+        return false;
+      }
+     }
+    return true;
 }
 public void displayLosingMessage()
 {
-    for(int i = 0; i < mines.size(); i++)
-      if(mines.get(i).isClicked()==false)
+  for(int r = 0; r < NUM_ROWS; r++){
+    for(int c = 0; c < NUM_COLS; c++){
+        buttons[r][c].setLabel(":(");
+    }
+  }
 }
 public void displayWinningMessage()
 {
-    //your code here
+    for(int r = 0; r < NUM_ROWS; r++){
+      for(int c = 0; c < NUM_COLS; c++){
+        buttons[r][c].setLabel(":)");
+      }
+    }
 }
 public boolean isValid(int r, int c)
 {
@@ -154,7 +165,7 @@ public class MSButton
     public void draw () 
     {    
         if (flagged)
-            fill(0);
+            fill(0,255,0);
          else if( clicked && mines.contains(this) ) 
               fill(255,0,0);
         else if(clicked)
